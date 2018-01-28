@@ -1,0 +1,146 @@
+%%%%%%%% ICML 2018 EXAMPLE LATEX SUBMISSION FILE %%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+
+% Recommended, but optional, packages for figures and better typesetting:
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{booktabs} % for professional tables
+
+% hyperref makes hyperlinks in the resulting PDF.
+% If your build breaks (sometimes temporarily if a hyperlink spans a page)
+% please comment out the following usepackage line and replace
+% \usepackage{icml2018} with \usepackage[nohyperref]{icml2018} above.
+\usepackage{hyperref}
+
+% Attempt to make hyperref and algorithmic work together better:
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+% Use the following line for the initial blind version submitted for review:
+%\usepackage{icml2018}
+
+% If accepted, instead use the following line for the camera-ready submission:
+%\usepackage[accepted]{icml2018}
+
+\usepackage[arxiv]{icml2018}
+\usepackage[draft]{todonotes}
+% The \icmltitle you define below is probably too long as a header.
+% Therefore, a short form for the running title is supplied here:
+\icmltitlerunning{Transductive Adversarial Networks (TAN)}
+
+\begin{document}
+
+\twocolumn[
+\icmltitle{Transductive Adversarial Networks (TAN)}
+
+% It is OKAY to include author information, even for blind
+% submissions: the style file will automatically remove it for you
+% unless you've provided the [accepted] option to the icml2018
+% package.
+
+% List of affiliations: The first argument should be a (short)
+% identifier you will use later to specify author affiliations
+% Academic affiliations should list Department, University, City, Region, Country
+% Industry affiliations should list Company, City, Region, Country
+
+% You can specify symbols, otherwise they are numbered in order.
+% Ideally, you should not use this facility. Affiliations will be numbered
+% in order of appearance and this is the preferred way.
+\icmlsetsymbol{equal}{*}
+
+\begin{icmlauthorlist}
+\icmlauthor{Sean Rowan}{ucl}
+\icmlauthor{Lewis Moffat}{ucl}
+\end{icmlauthorlist}
+
+\icmlaffiliation{ucl}{University College London}
+
+\icmlcorrespondingauthor{Sean Rowan}{sean.rowan.16@ucl.ac.uk}
+\icmlcorrespondingauthor{Lewis Moffat}{L.Moffat@cs.ucl.ac.uk}
+
+% You may provide any keywords that you
+% find helpful for describing your paper; these are used to populate
+% the "keywords" metadata in the PDF but will not be shown in the document
+\icmlkeywords{Machine Learning, Adversarial, Generative, Semi-supervised, Transductive}
+
+\vskip 0.3in
+]
+
+% this must go after the closing bracket ] following \twocolumn[ ...
+
+% This command actually creates the footnote in the first column
+% listing the affiliations and the copyright notice.
+% The command takes one argument, which is text to display at the start of the footnote.
+% The \icmlEqualContribution command is standard text for equal contribution.
+% Remove it (just {}) if you do not need this facility.
+
+\printAffiliationsAndNotice{}  % leave blank if no need to mention equal contribution
+%\printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
+
+\begin{abstract}
+TAN is a novel domain-adaptive semi-supervised machine learning framework that is designed for learning a conditional probability distribution on unlabelled data in a target domain, while only having access to: (1) easily obtained labelled data in a related, yet likely simpler, source domain and (2) a prior distribution on the labels for the target domain. TAN leverages a fully adversarial training procedure and a unique generator/encoder architecture which approximates the transductive combination of the source- and target-domain data. A benefit of TAN is that it allows the distance between the source- and target-domain label vector distributions to be greater than 0 whereas other domain-adaptive semi-supervised learning algorithms require this distance to equal 0. TAN can, however, still handle the latter case and is a more generalised approach to this case. Another benefit of TAN is that due to being a fully adversarial algorithm, it has the ability to accurately approximate highly complex distributions. Theoretical and experimental analyses demonstrate the viability of the TAN framework.
+\end{abstract}
+
+\section{Introduction}
+
+The scenario of having access to a small amount of labeled data but a large amount of unlabelled data is a common one in practice. In an idealised learning situation, the joint probability distribution between the input vector and the label vector across the sets of labeled and unlabelled data are equal. However, typically this does not occur in practice. Instead, the small amount of labeled data that is accessible is usually either significantly simpler than the encountered unlabelled data, or comes from a different domain with a different joint probability distribution between its input vector and label vector. These two practical cases can be considered the same from a learning point-of-view as the latter practical case. 
+
+In the standard domain-adaptive semi-supervised learning scenario, it is expected that the labelled and unlabelled input vectors can be drawn from unique marginal probability distributions. However, it is required that the label-vector marginal probability distribution for the labelled and unlabelled sets of data are equal and match the available labelled set of data [CITE]. This is demonstrated in the following example involving the MNIST (hand-drawn digits) and SVHN (house numbers from Google StreetView images) datasets.
+
+\begin{figure}[ht]
+\vskip 0.2in
+\begin{center}
+\centerline{\includegraphics[width=0.6\columnwidth]{example1}}
+\caption{The standard domain-adaptive semi-supervised learning scenario where the label-vector marginal probability distributions across domains are expected to be equal. In this example learning scenario, the labelled data are pairs of both an image of a hand-drawn number from 1 through 5 and a 5-dimensional one-hot encoded vector that encodes the numerical representation of the input image. The unlabelled data are images of house numbers from 1 through 5. There are common features in the input vectors across domains that allow a domain-adaptive semi-supervised learning algorithm to assign labels to the unlabelled input vectors using the available labelled and unlabelled data.}
+\label{icml-historical}
+\end{center}
+\vskip -0.2in
+\end{figure}
+Now consider a generalised domain-adaptive semi-supervised learning scenario where both the input-vector and the label-vector marginal probability distributions across domains are not expected to be equal. This generalised scenario motivates the design of TAN. The scenario is demonstrated in the following example involving the MNIST and SVHN datasets.
+
+\clearpage
+
+\begin{figure}[ht]
+\vskip 0.2in
+\begin{center}
+\centerline{\includegraphics[width=0.6\columnwidth]{example2}}
+\caption{A generalised domain-adaptive semi-supervised learning scenario where both the input-vector and the label-vector marginal probability distributions across domains are not expected to be equal. In this example learning scenario, the labelled data are pairs of a hand-drawn single-digit image of an odd number and a hand-drawn single-digit image of the previous even number. The unlabelled data pairs are the same except they are images of house numbers.}
+\label{icml-historical}
+\end{center}
+\vskip -0.2in
+\end{figure}
+
+This generalised domain-adaptive semi-supervised learning scenario is distinct from the style-transfer learning problem. In style transfer, learning occurs only on a single marginalised input vector across domains, and does not involve a corresponding label vector, thus significantly simplifying the learning procedure [CITE].
+
+We now motivate the usefulness of an algorithm that can learn a conditional probability distribution within the above generalised domain-adaptive semi-supervised scenario with a real-world application. drug discovery example here
+
+
+
+%However, if the labelled and unlabelled sets of data are not mutually exclusive in their conditional probability distributions between their inputs and labels (with the unlabelled domain leveraging a prior distribution on its labels), then it is possible to transductively learn an optimal conditional probability distribution between the inputs and labels across the labelled and unlabelled sets of data. This means that with a suitable prior, a transductive combination of labelled and unlabelled data can be approximated for arbitrary combinations of domain-specific conditional probability distributions. This scenario is what motivated the creation of the TAN framework. 
+
+%In this more generalised scenario than the previous scenario, it is only necessary that the conditional probability distributions between the input vector and the label vector across domains are not mutually exclusive for the possibility of transductively learning a conditional probability distribution to occur [PROOF]. This means that the labelled and unlabelled data can be highly dissimilar, yet not entirely dissimilar, on both the input vector and the label vector for successful domain-adaptive semi-supervised learning to potentially occur.
+
+
+\section{Related Work}
+
+\begin{itemize}
+\item GAN overview and impact
+\item ALI details
+\item Limitations of GAN and ALI; reason for TAN
+\item Similar work to TAN, same limitations
+\end{itemize}
+
+\section{TAN Algorithm}
+\subsection{TAN Model}
+\subsection{TAN Training Procedure}
+
+\section{Experiments}
+
+\section{Conclusions}
+
+%\bibliography{example_paper}
+\bibliographystyle{icml2018}
+
+
+\end{document}
