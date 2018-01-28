@@ -7,4 +7,4 @@ ABSTRACT -- TAN is a novel domain-adaptive semi-supervised machine learning fram
 
 ---
 
-<sup>1</sup>University College London. Correspondence to: Sean Rowan <sean.rowan.16@ucl.ac.uk>, Lewis Moffat <lewis.moffat@cs.ucl.ac.uk>.
+<sup>1</sup>University College London. Correspondence to: Sean Rowan <sean.rowan.16@ucl.ac.uk>, Lewis Moffat <L.Moffat@cs.ucl.ac.uk>.
