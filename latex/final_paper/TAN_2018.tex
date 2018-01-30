@@ -84,7 +84,7 @@ TAN is a novel domain-adaptive semi-supervised machine learning framework that i
 
 \section{Introduction}
 
-The scenario of having access to a small amount of labeled data but a large amount of unlabelled data is a common one in practice. In an idealised learning situation, the joint probability distribution between the input vector and the label vector across the sets of labeled and unlabelled data are equal. However, typically this does not occur in practice. Instead, the small amount of labeled data that is accessible is usually either significantly simpler than the encountered unlabelled data, or comes from a different domain with a different joint probability distribution between its input vector and label vector. These two practical cases can be considered the same from a learning point-of-view as the latter practical case. 
+The scenario of having access to a small amount of labeled data but a large amount of unlabelled data is a common one in practice. In an idealised learning situation, the joint probability distribution between the input vector and the label vector across the sets of labeled and unlabelled data are equal. However, typically this does not occur in practice. Instead, the small amount of labeled data that is accessible is usually either significantly simpler than the encountered unlabelled data, or comes from a different domain with a different joint probability distribution between its input vector and label vector. These two practical cases can be considered the same from a learning point-of-view as the latter practical case [CITE]. 
 
 In the standard domain-adaptive semi-supervised learning scenario, it is expected that the labelled and unlabelled input vectors can be drawn from unique marginal probability distributions. However, it is required that the label-vector marginal probability distribution for the labelled and unlabelled sets of data are equal and match the available labelled set of data [CITE]. This is demonstrated in the following example involving the MNIST (hand-drawn digits) and SVHN (house numbers from Google StreetView images) datasets.
 
@@ -99,8 +99,6 @@ In the standard domain-adaptive semi-supervised learning scenario, it is expecte
 \end{figure}
 Now consider a generalised domain-adaptive semi-supervised learning scenario where both the input-vector and the label-vector marginal probability distributions across domains are not expected to be equal. This generalised scenario motivates the design of TAN. The scenario is demonstrated in the following example involving the MNIST and SVHN datasets.
 
-\clearpage
-
 \begin{figure}[ht]
 \vskip 0.2in
 \begin{center}
@@ -111,9 +109,9 @@ Now consider a generalised domain-adaptive semi-supervised learning scenario whe
 \vskip -0.2in
 \end{figure}
 
-This generalised domain-adaptive semi-supervised learning scenario is distinct from the style-transfer learning problem. In style transfer, learning occurs only on a single marginalised input vector across domains, and does not involve a corresponding label vector, thus significantly simplifying the learning procedure [CITE].
+This generalised domain-adaptive semi-supervised learning scenario is distinct from the style-transfer learning problem. In style transfer, learning occurs only on a single marginalised input vector across domains, and does not involve a corresponding conditional label vector, thus significantly reducing the scope of applications [CITE].
 
-We now further motivate the usefulness of an algorithm that can learn a conditional probability distribution within the generalised domain-adaptive semi-supervised learning scenario with a real-world application. Consider the problem of human drug discovery. In a human drug discovery scenario, there is no data available about how an experimental drug molecule might bind to known human protein structures due to the difficulty in testing new drugs on live human subjects. However, there is ample data available on how an experimental drug molecule can bind to known yeast cell protein structures due to the free ability to test new drugs on these cells. In this scenario, the yeast cell experiments represent the source domain and the human experiments represent the target domain. The yeast cell protein structure is the input vector of the source domain and the experimental drug for yeast cells is the label vector of the source domain. Likewise, the human protein structure is the input vector of the target domain and the experimental drug for humans is the unknown label vector of the target domain. The learning goal is to generate a shortlist of potential candidate drugs for further human testing. Such an algorithm would be highly valuable in discovering new drugs for humans with fewer drug trials.
+We now further motivate the usefulness of an algorithm that can learn a conditional probability distribution within the generalised domain-adaptive semi-supervised learning scenario with a real-world application. Consider the problem of human drug discovery. In a human drug discovery scenario, there is no data available about how an experimental drug molecule might bind to known human protein structures due to the difficulty in testing new drugs on live human subjects. However, there is ample data available on how an experimental drug molecule can bind to known yeast cell protein structures due to the free ability to test new drugs on these cells. In this scenario, the yeast cell experiments represent the source domain and the human experiments represent the target domain. The yeast cell protein structure is the input vector of the source domain and the experimental drug for yeast cells is the label vector of the source domain. Likewise, the human protein structure is the input vector of the target domain and the experimental drug for humans is the unknown label vector of the target domain. The learning goal is to generate a shortlist of potential candidate drugs for further human testing. Such an algorithm would be highly valuable in discovering new drugs that are suitable for humans with fewer human drug trials.
 
 
 %However, if the labelled and unlabelled sets of data are not mutually exclusive in their conditional probability distributions between their inputs and labels (with the unlabelled domain leveraging a prior distribution on its labels), then it is possible to transductively learn an optimal conditional probability distribution between the inputs and labels across the labelled and unlabelled sets of data. This means that with a suitable prior, a transductive combination of labelled and unlabelled data can be approximated for arbitrary combinations of domain-specific conditional probability distributions. This scenario is what motivated the creation of the TAN framework. 
@@ -123,9 +121,15 @@ We now further motivate the usefulness of an algorithm that can learn a conditio
 
 \section{Related Work}
 
+There are two prior works that form the basis for the TAN algorithm: 1) Generative Adversarial Networks (GAN) [CITE] and 2) Adversarially Learned Inference (ALI) [CITE]. TAN leverages the general theoretical results from the GAN framework (as does the ALI framework) but utilises the ALI framework's training procedure as a component of the unique TAN algorithm.
+
+In the GAN framework, a two-player zero-sum game between adversarial learning agents is played where one agent (the generator) learns to generate convincing fake data, while the other agent (the discriminator) learns to discern generated data from sampled data which comes from a target data distribution. The generator learns a transfer function that converts an inputted Gaussian-noise vector into convincing data that matches the target data distribution on convergence of the adversarial game.
+
+The ALI framework extends the GAN framework by simultaneously learning a reverse transfer function that maps inputted data back to the Gaussian-noise vector which generated it, allowing the ability to finely control the features of the generated data with interpolations in the Gaussian-noise vector. The ALI framework by itself does not necessarily allow the ability to learn conditional probability distributions on inputted conditional data pairs [CITE]. 
+
+
+
 \begin{itemize}
-\item GAN overview and impact
-\item ALI details
 \item Limitations of GAN and ALI; reason for TAN
 \item Similar work to TAN, same limitations
 \end{itemize}
