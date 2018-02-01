@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.23)  1 FEB 2018 09:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.23)  1 FEB 2018 21:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -724,11 +724,11 @@ LaTeX Info: Redefining \nameref on input line 32.
 
  ABD: EveryShipout initializing macros
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 68.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 66.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 68.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 66.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 68.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 66.
 \c@@affilucl=\count151
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/microtype/mt-cmr.cfg
@@ -736,39 +736,33 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 (RS)
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 68.
+(Font)              <7> on input line 66.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 68.
+(Font)              <5> on input line 66.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 78.
+(Font)              <9> on input line 76.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 78.
+(Font)              <6> on input line 76.
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 78.
+Package hyperref Warning: Ignoring empty anchor on input line 76.
 
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 78.
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 76.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 78.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 76.
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--78
+Underfull \hbox (badness 10000) in paragraph at lines 76--76
 [][][]|  $[]$\OT1/ptm/m/n/9 (+20) University Col-lege Lon-don. Cor-re-spon-denc
 e to:
  []
 
 
-Underfull \hbox (badness 7273) in paragraph at lines 78--78
-\OT1/ptm/m/n/9 (+20) Sean Rowan \OML/cmm/m/it/9 <\OT1/ptm/m/n/9 (+20) sean.rowa
-n.16@ucl.ac.uk\OML/cmm/m/it/9 >\OT1/ptm/m/n/9 (+20) , Lewis Mof-fat
- []
+Package xcolor Warning: Incompatible color definition on input line 76.
 
-
-Package xcolor Warning: Incompatible color definition on input line 78.
-
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 78.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 76.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
@@ -777,21 +771,21 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 81.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 79.
 
 <example1.pdf, id=8, 773.89125pt x 613.29124pt>
 File: example1.pdf Graphic file (type pdf)
  <use example1.pdf>
-Package pdftex.def Info: example1.pdf used on input line 94.
+Package pdftex.def Info: example1.pdf used on input line 92.
 (pdftex.def)             Requested size: 140.92793pt x 111.67906pt.
 
 <example2.pdf, id=9, 773.89125pt x 613.29124pt>
 File: example2.pdf Graphic file (type pdf)
  <use example2.pdf>
-Package pdftex.def Info: example2.pdf used on input line 105.
+Package pdftex.def Info: example2.pdf used on input line 103.
 (pdftex.def)             Requested size: 140.92793pt x 111.67906pt.
 
-Underfull \hbox (badness 1629) in paragraph at lines 106--106
+Underfull \hbox (badness 1629) in paragraph at lines 104--104
 [][][]\OT1/ptm/m/n/9 (+20) A gen-er-alised domain-adaptation learn-ing sce-nari
 o
  []
@@ -805,10 +799,10 @@ s been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.113 
+l.111 
        <./example1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 132.
+Package xcolor Warning: Incompatible color definition on input line 130.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -818,28 +812,28 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.148 \end{document}
+l.146 \end{document}
                      <./example2.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 148.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 146.
  [3
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 148.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 146.
  (./TAN_2018.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 148.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 148.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 146.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 146.
 Package rerunfilecheck Info: File `TAN_2018.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 148.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 146.
  ) 
 Here is how much of TeX's memory you used:
  18295 strings out of 492995
  341733 string characters out of 6132704
- 443524 words of memory out of 5000000
+ 442524 words of memory out of 5000000
  21380 multiletter control sequences out of 15000+600000
  26246 words of font info for 120 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -851,7 +845,7 @@ ve/2017/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2017/
 texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist
 /fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb>
-Output written on TAN_2018.pdf (3 pages, 164854 bytes).
+Output written on TAN_2018.pdf (3 pages, 164275 bytes).
 PDF statistics:
  84 PDF objects out of 1000 (max. 8388607)
  64 compressed objects within 1 object stream
