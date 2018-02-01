@@ -121,6 +121,8 @@ We now further motivate the usefulness of an algorithm that can learn a conditio
 
 \section{Related Work}
 
+A good overview of transfer learning research and terminology can be found at: [CITE], we follow this terminology.
+
 There are two prior works that form the basis for the TAN framework: 1) Generative Adversarial Networks (GAN) [CITE] and 2) Adversarially Learned Inference (ALI) [CITE]. TAN leverages the general theoretical results from the GAN framework (the ALI framework leverages the GAN results as well) but utilises the ALI framework's training procedure as a component of the unique TAN algorithm.
 
 In the GAN framework, a two-player zero-sum game between adversarial learning agents is played where one agent (the generator) learns to generate convincing fake data, while the other agent (the discriminator) learns to discern generated data from sampled data which comes from an unknown distribution. The generator learns a transfer function that converts an inputted Gaussian-noise vector into convincing data that matches the unknown data distribution on convergence of the adversarial game.
@@ -129,9 +131,7 @@ The ALI framework extends the GAN framework by simultaneously learning a reverse
 
 The GAN framework can directly learn conditional probability distributions, and has also previously been formulated for the standard domain-adaptation learning scenario [CITE]. However, the GAN framework and its variants are not suited to the generalised domain-adaptation learning scenario because the discriminator requires label-vectors\footnote{`Label-vector' here means the actual data that the discriminator discerns as being real or fake, and not the real/fake label for the data inputted to the discriminator. Also, the input-vector for the domain-adaptation problem is inputted to the generator along with the Gaussian noise vector.} that come from the same marginalised probability distribution across the real and fake (i.e. source and target in this case) domains. TAN allows the label-vectors to come from different marginalised probability distributions across the real and fake domains.
 
-\begin{itemize}
-\item Similar work to TAN, same limitations
-\end{itemize}
+$\Delta$-GAN [CITE] is structurally similar to TAN in that it also leverages the GAN theoretical results and the ALI training procedure, however it is built for the more restrictive inductive transfer learning task and cannot handle the transductive transfer learning task. This means that $\Delta$-GAN requires paired input/label training data in both the source and target domain, whereas TAN only requires paired input/label training data in the source domain, unlabelled input data in the target domain and a marginalised prior distribution on the label-vector distribution in the target domain.
 
 \section{TAN Framework}
 \subsection{TAN Model}
