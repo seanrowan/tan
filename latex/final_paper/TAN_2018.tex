@@ -4,6 +4,7 @@
 
 % Recommended, but optional, packages for figures and better typesetting:
 \usepackage{microtype}
+\usepackage{bm}
 \usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{booktabs} % for professional tables
@@ -134,8 +135,10 @@ $\Delta$-GAN [CITE] is structurally similar to TAN in that it also leverages the
 \section{TAN Framework}
 In this section, we first outline the TAN probabilistic model, then we define the training procedure of this probabilistic model and finally we conclude with two proofs that establish the global optimality and convergence properties of the TAN framework. 
 
-TAN leverages both a GAN network and an ALI network, but with a shared generator across the two networks. The GAN network is trained normally and exclusively on the source-domain data. The ALI network is also trained normally but exclusively on the target-domain unlabelled input data and a prior on the target-domain label data. A unique training procedure which combines the two networks via the generator forces the shared generator and the ALI network's encoder to accommodate the statistics of both the source and target domain, and leads to convergence at a unique global optimum under mild assumptions (the exact same convexity assumptions from the original GAN framework formulation [CITE]).
+TAN leverages both a GAN network and an ALI network, but with a shared generator across the two networks. The GAN network is trained normally and exclusively on the source-domain data. The ALI network is also trained normally but exclusively on the target-domain unlabelled input data and a prior on the target-domain label data. A unique training procedure which combines the two networks via the generator forces the shared generator and the ALI network's encoder to accommodate the statistics of both the source and target domain, and leads to convergence at a unique global optimum under mild assumptions (the exact same convexity assumptions from the original GAN framework formulation [CITE]). The trained encoder can then be used as an inference model on the target-domain unlabelled input-data.
 \subsection{Model}
+$\bm{x}$ is the input-vector and $\bm{z}$ is the label-vector. $p_s(\bm{x},\bm{z})$ is the joint data distribution from the source domain. $p_s(\bm{z})$ is the marginalised label-vector data distribution from the source domain. $p_t(\bm{x})$ is the input-vector data distribution from the target domain. $\widetilde{p}_t(\bm{z})$ is the label-vector prior distribution from the target domain. G$(\bm{x}|\bm{z}; \theta_{g})$ is the shared generator function. E$(\bm{z}|\bm{x}; \theta_{e})$ is the encoder function. $\textrm{D}_s(y|\bm{x},\bm{z}; \theta_{d,s})$ is the source domain discriminator function. $\textrm{D}_t(y|\bm{x},\bm{z}; \theta_{d,t})$ is the target domain discriminator function.
+
 
 \subsection{Training Procedure}
 \subsection{Global Optimality Proof}
