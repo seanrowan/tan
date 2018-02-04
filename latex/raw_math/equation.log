@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.23)  23 JAN 2018 11:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.23)  3 FEB 2018 23:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -129,8 +129,7 @@ Package: bm 2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
 \symboldsymbols=\mathgroup6
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
 LaTeX Info: Redefining \bm on input line 207.
-)
-No file equation.aux.
+) (./equation.aux)
 \openout1 = `equation.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
@@ -145,6 +144,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
+
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count100
@@ -219,8 +219,8 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./equa
 tion.aux) ) 
 Here is how much of TeX's memory you used:
- 2218 strings out of 492995
- 30188 string characters out of 6132704
+ 2220 strings out of 492995
+ 30214 string characters out of 6132704
  98439 words of memory out of 5000000
  5756 multiletter control sequences out of 15000+600000
  7197 words of font info for 26 fonts, out of 8000000 for 9000
@@ -233,7 +233,7 @@ i7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10
 .pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
 pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.p
 fb>
-Output written on equation.pdf (1 page, 72622 bytes).
+Output written on equation.pdf (1 page, 71856 bytes).
 PDF statistics:
  32 PDF objects out of 1000 (max. 8388607)
  22 compressed objects within 1 object stream

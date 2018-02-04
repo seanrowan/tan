@@ -132,8 +132,14 @@ The GAN framework can directly learn conditional probability distributions, and 
 $\Delta$-GAN [CITE] is structurally similar to TAN in that it also leverages the GAN theoretical results and the ALI training procedure, however it is built for the more restrictive inductive transfer learning task and cannot handle the transductive transfer learning task. This means that $\Delta$-GAN requires paired input/label training data in both the source and target domain, whereas TAN only requires paired input/label training data in the source domain, unlabelled input data in the target domain and a marginalised prior distribution on the label-vector distribution in the target domain.
 
 \section{TAN Framework}
-\subsection{TAN Model}
-\subsection{TAN Training Procedure}
+In this section, we first outline the TAN probabilistic model, then we define the training procedure of this probabilistic model and finally we conclude with two proofs that establish the global optimality and convergence properties of the TAN framework. 
+
+TAN leverages both a GAN network and an ALI network, but with a shared generator across the two networks. The GAN network is trained normally and exclusively on the source-domain data. The ALI network is also trained normally but exclusively on the target-domain unlabelled input data and a prior on the target-domain label data. A unique training procedure which combines the two networks via the generator forces the shared generator and the ALI network's encoder to accommodate the statistics of both the source and target domain, and leads to convergence at a unique global optimum under mild assumptions (the exact same convexity assumptions from the original GAN framework formulation [CITE]).
+\subsection{Model}
+
+\subsection{Training Procedure}
+\subsection{Global Optimality Proof}
+\subsection{Convergence Proof}
 
 \section{Experiments}
 
