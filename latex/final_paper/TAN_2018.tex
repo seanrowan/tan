@@ -7,6 +7,8 @@
 \usepackage{bm}
 \usepackage{graphicx}
 \usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{booktabs} % for professional tables
 
 % hyperref makes hyperlinks in the resulting PDF.
@@ -137,8 +139,21 @@ In this section, we first outline the TAN probabilistic model, then we define th
 
 TAN leverages both a GAN network and an ALI network, but with a shared generator across the two networks. The GAN network is trained normally and exclusively on the source-domain data. The ALI network is also trained normally but exclusively on the target-domain unlabelled input data and a prior on the target-domain label data. A unique training procedure which combines the two networks via the generator forces the shared generator and the ALI network's encoder to accommodate the statistics of both the source and target domain, and leads to convergence at a unique global optimum under mild assumptions (the exact same convexity assumptions from the original GAN framework formulation [CITE]). The trained encoder can then be used as an inference model on the target-domain unlabelled input-data.
 \subsection{Model}
-$\bm{x}$ is the input-vector and $\bm{z}$ is the label-vector. $p_s(\bm{x},\bm{z})$ is the joint data distribution from the source domain. $p_s(\bm{z})$ is the marginalised label-vector data distribution from the source domain. $p_t(\bm{x})$ is the input-vector data distribution from the target domain. $\widetilde{p}_t(\bm{z})$ is the label-vector prior distribution from the target domain. G$(\bm{x}|\bm{z}; \theta_{g})$ is the shared generator function. E$(\bm{z}|\bm{x}; \theta_{e})$ is the encoder function. $\textrm{D}_s(y|\bm{x},\bm{z}; \theta_{d,s})$ is the source domain discriminator function. $\textrm{D}_t(y|\bm{x},\bm{z}; \theta_{d,t})$ is the target domain discriminator function.
+We first define our terms as follows. $\bm{x}$ is the input-vector and $\bm{z}$ is the label-vector. $p_s(\bm{x},\bm{z})$ is the joint data distribution from the source domain. $p_s(\bm{z})$ is the marginalised label-vector data distribution from the source domain. $p_t(\bm{x})$ is the input-vector data distribution from the target domain. $\widetilde{p}_t(\bm{z})$ is the label-vector prior distribution from the target domain. $G_x(\bm{x}|\bm{z}; \theta_{g,x})$ is the shared generator function. $G_z(\bm{z}|\bm{x}; \theta_{g,z})$ is the encoder function. $y$ is the real/fake binary label of the inputted data to a discriminator. $D_s(y|\bm{x},\bm{z}; \theta_{d,s})$ is the source domain discriminator function. $D_t(y|\bm{x},\bm{z}; \theta_{d,t})$ is the target domain discriminator function.
 
+\begin{equation}
+\begin{split}
+\min_{G} \max_{D} V_s(G, D) = \mathbb{E}_{(\bm{x},\bm{z})\sim p_s(\bm{x},\bm{z})}[\log D_s(\bm{x}, \bm{z})]\\
++ \mathbb{E}_{\bm{z}\sim p_{s}(\bm{z})}[\log (1 - D_s(G_x(\bm{z}), \bm{z}) )].
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\min_{G} \max_{D} V_t(G, D) = \mathbb{E}_{\bm{x}\sim p_{t}(\bm{x})}[\log D_t(\bm{x}, G_z(\bm{x}))]\\
++  \mathbb{E}_{\bm{z}\sim \widetilde{p}_{t}(\bm{z})}[\log (1 - D_t(G_x(\bm{z}), \bm{z}))].
+\end{split}
+\end{equation}
 
 \subsection{Training Procedure}
 \subsection{Global Optimality Proof}
