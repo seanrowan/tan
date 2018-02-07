@@ -81,7 +81,7 @@
 %\printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
 
 \begin{abstract}
-Transductive Adversarial Networks (TAN) is a novel domain-adaptation machine learning framework that is designed for learning a conditional probability distribution on unlabelled input data in a target domain, while also only having access to: (1) easily obtained labelled data from a related source domain, which may have a different conditional probability distribution than the target domain, and (2) a marginalised prior distribution on the labels for the target domain. TAN leverages a fully adversarial training procedure and a unique generator/encoder architecture which approximates the transductive combination of the available source- and target-domain data. A benefit of TAN is that it allows the distance between the source- and target-domain label-vector marginal probability distributions to be greater than 0 (i.e. different tasks across the source and target domains) whereas other domain-adaptation algorithms require this distance to equal 0 (i.e. a single task across the source and target domains). TAN can, however, still handle the latter case and is a more generalised approach to this case. Another benefit of TAN is that due to being a fully adversarial algorithm, it has the potential to accurately approximate highly complex distributions. Theoretical and experimental analyses demonstrate the viability of the TAN framework.
+Transductive Adversarial Networks (TAN) is a novel domain-adaptation machine learning framework that is designed for learning a conditional probability distribution on unlabelled input data in a target domain, while also only having access to: (1) easily obtained labelled data from a related source domain, which may have a different conditional probability distribution than the target domain, and (2) a marginalised prior distribution on the labels for the target domain. TAN leverages a fully adversarial training procedure and a unique generator/encoder architecture which approximates the transductive combination of the available source- and target-domain data. A benefit of TAN is that it allows the distance between the source- and target-domain label-vector marginal probability distributions to be greater than 0 (i.e. different tasks across the source and target domains) whereas other domain-adaptation algorithms require this distance to equal 0 (i.e. a single task across the source and target domains). TAN can, however, still handle the latter case and is a more generalised approach to this case. Another benefit of TAN is that due to being a fully adversarial algorithm, it has the potential to accurately approximate highly complex distributions. Theoretical analysis demonstrates the viability of the TAN framework.
 \end{abstract}
 
 \section{Introduction}
@@ -207,14 +207,15 @@ The global optimum across $\min_{G} \max_{D} V_s(G, D)$ and $\min_{G} \max_{D} V
 \end{prop}
 
 \begin{proof}
+By straightforward extension of the proof in Goodfellow et al. (2014), the following result is achieved on convergence of $\min_{G} \max_{D} V_s(G, D)$. 
 \begin{equation}
 p_s(\bm{x},\bm{z}) = G_x(\bm{x}|\bm{z};\theta_{gx}^*)p_s(\bm{z}).
 \end{equation}
-
+Similarly, by straightforward extension of the proof in Dumoulin et al. (2016), the following result is achieved on convergence of $\min_{G} \max_{D} V_t(G, D)$.
 \begin{equation}
 G_x(\bm{x}|\bm{z};\theta_{gx}^*)\widetilde{p}_t(\bm{z}) = G_z(\bm{z}|\bm{x}; \theta_{gz}^*)p_t(\bm{x}).
 \end{equation}
-Therefore,
+Therefore, on simultaneous convergence of the above two value functions,
 \begin{equation}
 \begin{split}
 G_x(\bm{x}|\bm{z};\theta_{gx}^*) &= \frac{G_z(\bm{z}|\bm{x}; \theta_{gz}^*)p_t(\bm{x})}{\widetilde{p}_t(\bm{z})}\\
@@ -230,10 +231,13 @@ G_z(\bm{z}|\bm{x}; \theta_{gz}^*) = \frac{p_s(\bm{x},\bm{z})\widetilde{p}_t(\bm{
 \subsection{Convergence Proof}
 
 \section{Experiments}
-
+We are currently performing extensive experiments and will release the details of these experiments in future versions of this paper.
 \section{Conclusions}
 
-%\bibliography{example_paper}
+\section*{Acknowledgements}
+Thank you to Sarah Murphy and Lewis Moffat for helpful discussions on the potential applications of TAN.
+
+\bibliography{example_paper}
 \bibliographystyle{icml2018}
 
 
