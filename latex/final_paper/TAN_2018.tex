@@ -9,8 +9,9 @@
 \usepackage{subfigure}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{amsthm}
 \usepackage{booktabs} % for professional tables
-
+\newtheorem{prop}{Proposition}
 % hyperref makes hyperlinks in the resulting PDF.
 % If your build breaks (sometimes temporarily if a hyperlink spans a page)
 % please comment out the following usepackage line and replace
@@ -128,7 +129,7 @@ There are two prior works that form the basis for the TAN framework: 1) Generati
 
 In the GAN framework, a two-player zero-sum game between adversarial learning agents is played where one agent (the generator) learns to generate convincing fake data, while the other agent (the discriminator) learns to discern generated data from sampled data which comes from an unknown distribution. The generator learns a transfer function that converts an inputted Gaussian-noise vector into convincing data that matches the unknown data distribution on convergence of the adversarial game.
 
-The ALI framework (and also the BiGAN framework) extends the GAN framework by simultaneously learning a reverse transfer function that maps inputted data back to the Gaussian-noise vector which generated it, allowing the ability to finely control the features of the generated data with interpolations in the Gaussian-noise vector. The ALI framework by itself does not allow the ability to learn conditional probability distributions on inputted conditional data pairs [CITE]. \textbf{N.B. cite the BiGAN model here too. }
+The ALI framework [CITE] (and also the BiGAN framework [CITE]) extends the GAN framework by simultaneously learning a reverse transfer function that maps inputted data back to the Gaussian-noise vector which generated it, allowing the ability to finely control the features of the generated data with interpolations in the Gaussian-noise vector. The ALI framework by itself does not allow the ability to learn conditional probability distributions on inputted conditional data pairs [CITE]. 
 
 The GAN framework can directly learn conditional probability distributions, and has also previously been formulated for the standard domain-adaptation learning scenario [CITE]. However, the GAN framework and its variants are not suited to the generalised domain-adaptation learning scenario because the discriminator requires label-vectors\footnote{`Label-vector' here means the actual data that the discriminator discerns as being real or fake, and not the real/fake label for the data inputted to the discriminator. Also, the input-vector for the domain-adaptation problem is inputted to the generator along with the Gaussian noise vector.} that come from the same marginalised probability distribution across the real and fake (i.e. source and target in this case) domains. TAN allows the label-vectors to come from different marginalised probability distributions across the real and fake domains.
 
@@ -139,28 +140,27 @@ In this section, we first outline the TAN probabilistic model, then we define th
 
 TAN leverages both a GAN network and an ALI network, but with a shared generator across the two networks. The GAN network is trained normally and exclusively on the source-domain data. The ALI network is also trained normally but exclusively on the target-domain unlabelled input data and a prior on the target-domain label data. A unique training procedure which combines the two networks via the generator forces the shared generator and the ALI network's encoder to accommodate the statistics of both the source and target domain, and leads to convergence at a unique global optimum under mild assumptions (the exact same convexity assumptions from the original GAN framework formulation [CITE]). The trained encoder can then be used as an inference model on the target-domain unlabelled input-data.
 \subsection{Model}
-We first define our terms as follows. $\bm{x}$ is the input-vector and $\bm{z}$ is the label-vector. $p_s(\bm{x},\bm{z})$ is the joint data distribution from the source domain. $p_s(\bm{z})$ is the marginalised label-vector data distribution from the source domain. $p_t(\bm{x})$ is the unlabelled input-vector data distribution from the target domain. $\widetilde{p}_t(\bm{z})$ is the label-vector prior distribution from the target domain. $G_x(\bm{x}|\bm{z}; \theta_{gx})$ is the shared generator function. $G_z(\bm{z}|\bm{x}; \theta_{gz})$ is the encoder function. $y$ is the binary classification label of the inputted data to a discriminator. $y=1$ for samples from the distribution that the discriminator 
+We first define our terms as follows. $\bm{x}$ is the input-vector and $\bm{z}$ is the label-vector. $p_s(\bm{x},\bm{z})$ is the joint data distribution from the source domain. $p_s(\bm{z})$ is the marginalised label-vector data distribution from the source domain. $p_t(\bm{x})$ is the unlabelled input-vector data distribution from the target domain. $\widetilde{p}_t(\bm{z})$ is the label-vector prior distribution from the target domain. $G_x(\bm{x}|\bm{z}; \theta_{gx})$ is the shared generator function. $G_z(\bm{z}|\bm{x}; \theta_{gz})$ is the encoder function. $y$ is the binary classification label of the inputted data to a discriminator. $y=1$ for samples from the distribution that the discriminator learns to support. $D_s(y|\bm{x},\bm{z}; \theta_{ds})$ is the source-domain discriminator function. $D_t(y|\bm{x},\bm{z}; \theta_{dt})$ is the target-domain discriminator function.
 
-
-$y=1$ is a real sample and $y=0$ is a generated sample for the GAN network. $y=1$ is a sample involving the encoder and $y=0$ is a sample involving the generator for the ALI network. $D_s(y|\bm{x},\bm{z}; \theta_{ds})$ is the source-domain discriminator function. $D_t(y|\bm{x},\bm{z}; \theta_{dt})$ is the target-domain discriminator function.
-
-\begin{equation}
+The source-domain value function is:
+\begin{equation}\label{eq:source-value}
 \begin{split}
 \min_{G} \max_{D} V_s(G, D) = \mathbb{E}_{(\bm{x},\bm{z})\sim p_s(\bm{x},\bm{z})}[\log D_s(\bm{x}, \bm{z})]\\
 + \mathbb{E}_{\bm{z}\sim p_{s}(\bm{z})}[\log (1 - D_s(G_x(\bm{z}), \bm{z}) )].
 \end{split}
 \end{equation}
-
-\begin{equation}
+The target-domain value function is:
+\begin{equation}\label{eq:target-value}
 \begin{split}
 \min_{G} \max_{D} V_t(G, D) = \mathbb{E}_{\bm{x}\sim p_{t}(\bm{x})}[\log D_t(\bm{x}, G_z(\bm{x}))]\\
 +  \mathbb{E}_{\bm{z}\sim \widetilde{p}_{t}(\bm{z})}[\log (1 - D_t(G_x(\bm{z}), \bm{z}))].
 \end{split}
 \end{equation}
+In practice, the value functions are reworked such that the generator maximises an inverted expression whose gradient is stronger when the discriminator's output saturates, as in the original GAN paper [CITE]. Also in practice, the logarithmic functions are replaced with the Wasserstein distance metric which prevents saturation and provides better experimental performance [CITE]. We start with the above original expressions for the value functions in order to make the following TAN theoretical results a more straightforward extension of the original GAN results.
 
 \subsection{Training Procedure}
-
-\begin{algorithm}[tb]
+The TAN training procedure is as follows. For $m$ steps, the source-domain value function (eq. \ref{eq:source-value}) is iteratively solved using stochastic gradient descent. Then for $n$ steps, the target-domain value function (eq. \ref{eq:target-value}) is iteratively solved using stochastic gradient descent. The two value functions share a common generator function, $G_x(\bm{x}|\bm{z}; \theta_{gx})$. This shared generator function learns to accommodate both the source and target domain data, which allows global optimality in the entire TAN framework, as shown in the next section.
+\begin{algorithm}[h!]
    \caption{The TAN Training Procedure}
    \label{alg:example}
 \begin{algorithmic}
@@ -201,6 +201,12 @@ $y=1$ is a real sample and $y=0$ is a generated sample for the GAN network. $y=1
 
 \subsection{Global Optimality Proof}
 
+\begin{prop}
+
+The global optimum across $\min_{G} \max_{D} V_s(G, D)$ and $\min_{G} \max_{D} V_t(G, D)$ is achieved at: $G_z(\bm{z}|\bm{x}; \theta_{gz}^*) = \frac{p_s(\bm{x},\bm{z})\widetilde{p}_t(\bm{z})}{p_s(\bm{z})p_t(\bm{x})}$.
+\end{prop}
+
+\begin{proof}
 \begin{equation}
 p_s(\bm{x},\bm{z}) = G_x(\bm{x}|\bm{z};\theta_{gx}^*)p_s(\bm{z}).
 \end{equation}
@@ -219,6 +225,7 @@ Finally,
 \begin{equation}
 G_z(\bm{z}|\bm{x}; \theta_{gz}^*) = \frac{p_s(\bm{x},\bm{z})\widetilde{p}_t(\bm{z})}{p_s(\bm{z})p_t(\bm{x})}.
 \end{equation}
+\end{proof}
 
 \subsection{Convergence Proof}
 
