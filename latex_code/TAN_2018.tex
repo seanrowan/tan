@@ -199,7 +199,7 @@ The TAN training procedure is as follows. For $m$ steps, the source-domain value
 \end{algorithmic}
 \end{algorithm}
 
-\subsection{Global Optimality Proof}
+\subsection{Global Optimality and Convergence Proof}
 
 \begin{prop}
 
@@ -215,6 +215,9 @@ Similarly, by straightforward extension of the proof in \cite{dumoulin2016advers
 \begin{equation}
 G_x(\bm{x}|\bm{z};\theta_{gx}^*)\widetilde{p}_t(\bm{z}) = G_z(\bm{z}|\bm{x}; \theta_{gz}^*)p_t(\bm{x}).
 \end{equation}
+
+The requirement on convergence from \cite{goodfellow2014generative} and \cite{dumoulin2016adversarially} for $\min_{G} \max_{D} V_s(G, D)$ and $\min_{G} \max_{D} V_t(G, D)$ is that $D$ is allowed to reach its optimum at each training step, given $G$. $D_s$ and $D_t$ are each allowed to reach their optimum at each training step of their respective value functions given their respective $G$. Therefore, $\min_{G} \max_{D} V_s(G, D)$ and $\min_{G} \max_{D} V_t(G, D)$ will simultaneously converge if $V_s(G, D)$ and $V_t(G, D)$ are convex in $G$.
+
 Therefore, on simultaneous convergence of the above two value functions,
 \begin{equation}
 \begin{split}
@@ -228,13 +231,12 @@ G_z(\bm{z}|\bm{x}; \theta_{gz}^*) = \frac{p_s(\bm{x},\bm{z})\widetilde{p}_t(\bm{
 \end{equation}
 \end{proof}
 
-\subsection{Convergence Proof}
-
-
+As stated in \cite{goodfellow2014generative}, the value function is not expected to be convex w.r.t the generator in practice due to the use of multilayer perceptrons. However, the excellent performance of multilayer perceptrons in practice suggests that they are a reasonable model to use despite their lack of theoretical guarantees. 
 
 \section{Experiments}
 We are currently performing extensive experiments and will release the details of these experiments in future versions of this paper.
-\section{Conclusions}
+\section{Conclusion}
+This paper has demonstrated the viability of the TAN framework, suggesting that these research directions could prove useful.
 
 \section*{Acknowledgements}
 Thank you to Sarah Murphy and Lewis Moffat for helpful discussions on the potential applications of TAN.
