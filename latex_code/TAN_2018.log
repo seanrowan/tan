@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.23)  8 FEB 2018 00:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.23)  8 FEB 2018 00:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1000,22 +1000,19 @@ Package xcolor Warning: Incompatible color definition on input line 219.
 
 Package xcolor Warning: Incompatible color definition on input line 219.
 
-
-Package xcolor Warning: Incompatible color definition on input line 234.
-
 (./TAN_2018.bbl) [4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 250.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 250.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 248.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 248.
  (./TAN_2018.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 250.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 250.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 248.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 248.
 Package rerunfilecheck Info: File `TAN_2018.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 250.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 248.
  ) 
 Here is how much of TeX's memory you used:
  19291 strings out of 492995
@@ -1044,10 +1041,10 @@ exmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/
 fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
 1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/time
 s/utmri8a.pfb>
-Output written on TAN_2018.pdf (4 pages, 284906 bytes).
+Output written on TAN_2018.pdf (4 pages, 284945 bytes).
 PDF statistics:
- 180 PDF objects out of 1000 (max. 8388607)
- 146 compressed objects within 2 object streams
+ 179 PDF objects out of 1000 (max. 8388607)
+ 145 compressed objects within 2 object streams
  35 named destinations out of 1000 (max. 500000)
  27671 words of extra memory for PDF output out of 29859 (max. 10000000)
 

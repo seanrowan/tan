@@ -231,12 +231,10 @@ G_z(\bm{z}|\bm{x}; \theta_{gz}^*) = \frac{p_s(\bm{x},\bm{z})\widetilde{p}_t(\bm{
 \end{equation}
 \end{proof}
 
-As stated in \cite{goodfellow2014generative}, the value function is not expected to be convex w.r.t the generator in practice due to the use of multilayer perceptrons. However, the excellent performance of multilayer perceptrons in practice suggests that they are a reasonable model to use despite their lack of theoretical guarantees. 
-
 \section{Experiments}
 We are currently performing extensive experiments and will release the details of these experiments in future versions of this paper.
 \section{Conclusion}
-This paper has demonstrated the viability of the TAN framework, suggesting that these research directions could prove useful.
+We have established Transductive Adversarial Networks (TAN), which learns a conditional probability distribution on unlabelled input data in a target domain while also only having access to: (1) easily obtained labelled data from a related source domain, which may have a different conditional probability distribution than the target domain, and (2) a marginalised prior distribution on the labels for the target domain. Theoretical analysis has demonstrated the viability of the TAN framework, suggesting that the TAN framework could prove useful for further applications.
 
 \section*{Acknowledgements}
 Thank you to Sarah Murphy and Lewis Moffat for helpful discussions on the potential applications of TAN.
