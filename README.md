@@ -1,7 +1,7 @@
 # Transductive Adversarial Networks (TAN)
 Code for the paper "Transductive Adversarial Networks (TAN)" by Sean Rowan<sup>1</sup> (2018).
 
-arXiv preprint PDF of the paper is available at: 
+The paper is available at: https://arxiv.org/abs/1802.02798
 
 ---
 

@@ -93,7 +93,7 @@ In the standard domain-adaptation learning scenario, it is expected that the lab
 \begin{figure}[ht]
 \vskip 0.2in
 \begin{center}
-\centerline{\includegraphics[width=0.6\columnwidth]{example1}}
+\centerline{\includegraphics[width=0.6\columnwidth]{example1.pdf}}
 \caption{The standard domain-adaptation learning scenario where the label-vector marginal probability distributions across domains are expected to be equal. In this example learning scenario, the labelled data are pairs of both an image of a hand-drawn number from 1 through 5 and a 5-dimensional one-hot encoded vector that encodes the numerical representation of the input image. The unlabelled data are images of house numbers from 1 through 5. There are common features in the input vectors across domains that allow a domain-adaptation learning algorithm to assign labels to the unlabelled input vectors using the available labelled and unlabelled data.}
 \label{icml-historical}
 \end{center}
@@ -104,7 +104,7 @@ Now consider a generalised domain-adaptation learning scenario where both the in
 \begin{figure}[ht]
 \vskip 0.2in
 \begin{center}
-\centerline{\includegraphics[width=0.6\columnwidth]{example2}}
+\centerline{\includegraphics[width=0.6\columnwidth]{example2.pdf}}
 \caption{A generalised domain-adaptation learning scenario where both the input-vector and the label-vector marginal probability distributions across domains are not expected to be equal. In this example learning scenario, the labelled data are pairs of a hand-drawn single-digit image of an odd number and a hand-drawn single-digit image of the previous even number. The unlabelled data pairs are the same except they are images of house numbers.}
 \label{icml-historical}
 \end{center}
@@ -136,7 +136,7 @@ The GAN framework can directly learn conditional probability distributions, and 
 $\Delta$-GAN \cite{gan2017triangle} is structurally similar to TAN in that it also leverages the GAN theoretical results and the ALI training procedure, however it is built for the more restrictive inductive transfer learning task and cannot handle the transductive transfer learning task. This means that $\Delta$-GAN requires paired input/label training data in both the source and target domain, whereas TAN only requires paired input/label training data in the source domain, unlabelled input data in the target domain and a marginalised prior distribution on the label-vector distribution in the target domain.
 
 \section{TAN Framework}
-In this section, we first outline the TAN probabilistic model, then we define the training procedure of this probabilistic model and finally we conclude with two proofs that establish the global optimality and convergence properties of the TAN framework. 
+In this section, we first outline the TAN probabilistic model, then we define the training procedure of this probabilistic model and finally we conclude with a proof that establishes the global optimality and convergence properties of the TAN framework. 
 
 TAN leverages both a GAN network and an ALI network, but with a shared generator across the two networks. The GAN network is trained normally and exclusively on the source-domain data. The ALI network is also trained normally but exclusively on the target-domain unlabelled input data and a prior on the target-domain label data. A unique training procedure which combines the two networks via the generator forces the shared generator and the ALI network's encoder to accommodate the statistics of both the source and target domain, and leads to convergence at a unique global optimum under mild assumptions (the exact same convexity assumptions from the original GAN framework formulation \cite{goodfellow2014generative}). The trained encoder can then be used as an inference model on the target-domain unlabelled input-data.
 \subsection{Model}
@@ -237,7 +237,7 @@ We are currently performing extensive experiments and will release the details o
 We have established Transductive Adversarial Networks (TAN), which learns a conditional probability distribution on unlabelled input data in a target domain while also only having access to: (1) easily obtained labelled data from a related source domain, which may have a different conditional probability distribution than the target domain, and (2) a marginalised prior distribution on the labels for the target domain. Theoretical analysis has demonstrated the viability of the TAN framework, suggesting that the TAN framework could prove useful for further applications.
 
 \section*{Acknowledgements}
-Thank you to Sarah Murphy and Lewis Moffat for helpful discussions on the potential applications of TAN.
+Thank you to Sarah Murphy and Lewis Moffat for helpful discussions about the potential applications of TAN.
 
 \bibliographystyle{abbrv}
 \bibliography{example_paper}
